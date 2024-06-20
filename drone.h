@@ -8,7 +8,7 @@
 #define HEIGHT 15
 #define STORAGEHIGHT 4
 #define CARTSIZE 3
-#define DRONECOUNT 3
+#define DRONECOUNT 5
 
 #define YELLOW FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 #define GREEN FOREGROUND_GREEN | FOREGROUND_INTENSITY
@@ -37,12 +37,13 @@ typedef struct pumpkin_t{
     int isRipe;
 } pumpkin_t;
 
-drone_t initDrone(int x, int y);
+drone_t initDrone(int x, int y, int cartsize);
 void initPumpkin( pumpkin_t (*pumpkin)[WIDTH]);
 void growPumpkin(pumpkin_t (*pumpkin)[WIDTH]);
 int isHarvest(drone_t drone, pumpkin_t (*pumpkin)[WIDTH]);
 int isStored(drone_t drone);
-void updateField(char (*field)[WIDTH], drone_t drone[DRONECOUNT], pumpkin_t (*pumpkin)[WIDTH]);
+void updateFieldSolo(char (*field)[WIDTH], drone_t drone, pumpkin_t (*pumpkin)[WIDTH]);
+void updateFieldAI(char (*field)[WIDTH], drone_t drone[DRONECOUNT], pumpkin_t (*pumpkin)[WIDTH]);
 void printField(char (*field)[WIDTH]);
 void move(drone_t *drone, pumpkin_t (*pumpkin)[WIDTH]);
 void changeDirection(drone_t *drone, char key);

@@ -1,6 +1,35 @@
 #include "drone.h"
 
-void updateField(char (*field)[WIDTH], drone_t drone[DRONECOUNT], pumpkin_t (*pumpkin)[WIDTH]){
+void updateFieldSolo(char (*field)[WIDTH], drone_t drone, pumpkin_t (*pumpkin)[WIDTH]){
+    for(int i = HEIGHT - STORAGEHIGHT; i < HEIGHT; i++){
+        for (int j = 0; j < WIDTH; j++)
+        {
+            if (i == HEIGHT - STORAGEHIGHT)
+                field[i][j] = '-';
+            else
+                field[i][j] = ' ';
+        }
+    }
+
+     for(int i = 0; i < HEIGHT-STORAGEHIGHT; i++){
+        for(int j = 0; j < WIDTH; j++){
+            if(pumpkin[i][j].isRipe == 1)
+                field[pumpkin[i][j].y][pumpkin[i][j].x] = 'O';
+            else if(pumpkin[i][j].isRipe == 0)
+                field[pumpkin[i][j].y][pumpkin[i][j].x] = 'o';
+            else
+                field[pumpkin[i][j].y][pumpkin[i][j].x] = ' ';
+        }
+    }
+    
+    field[drone.y][drone.x] = '%';
+    for (int i = 0; i < drone.currentCartSize; i++){
+        field[drone.cart[i].y][drone.cart[i].x] = '@';
+    }
+    
+}
+
+void updateFieldAI(char (*field)[WIDTH], drone_t drone[DRONECOUNT], pumpkin_t (*pumpkin)[WIDTH]){
     for(int i = HEIGHT - STORAGEHIGHT; i < HEIGHT; i++){
         for (int j = 0; j < WIDTH; j++)
         {

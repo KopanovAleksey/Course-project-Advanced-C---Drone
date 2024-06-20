@@ -1,13 +1,13 @@
 #include "drone.h"
 
-drone_t initDrone(int x, int y){
+drone_t initDrone(int x, int y, int cartsize){
     drone_t drone;
     drone.x = x;
     drone.y = y;
-    drone.maxCartSize = CARTSIZE;
+    drone.maxCartSize = cartsize;
     drone.currentCartSize = 0;
     drone.direction = STOP;
-    drone.cart = (cart_t*) malloc(sizeof(cart_t) * (CARTSIZE + 1));
+    drone.cart = (cart_t*) malloc(sizeof(cart_t) * (cartsize + 1));
     return drone;
 }
 
